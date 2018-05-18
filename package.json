@@ -1,7 +1,7 @@
 {
   "name": "nested-iframe",
-  "version": "0.0.2",
-  "description": "Recursivly find a nested iframe",
+  "version": "0.1.0",
+  "description": "Recursively find a nested iframe",
   "homepage": "https://nested-iframe.codejam.ninja",
   "bugs": {
     "url": "https://github.com/codejamninja/nested-iframe/issues",
