@@ -1,0 +1,79 @@
+{
+  "name": "nested-iframe",
+  "version": "0.0.2",
+  "description": "Recursivly find a nested iframe",
+  "homepage": "https://nested-iframe.codejam.ninja",
+  "bugs": {
+    "url": "https://github.com/codejamninja/nested-iframe/issues",
+    "email": "jam@codejam.ninja"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Jam Risser",
+    "email": "jam@codejam.ninja",
+    "url": "https://codejam.ninja"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codejamninja/nested-iframe"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run test && babel src -d lib",
+    "build:test": "parcel build tests/public/_index.html -d tests/public -o index.html",
+    "clean": "rm -rf lib .cache tests/public/script.*.* tests/public/index.html && jest --clearCache",
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./",
+    "prepublish": "npm run build",
+    "test": "npm run lint && npm run build:test && jest --forceExit",
+    "test:serve": "npm run build:test && http-server tests/public"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "detect-port": "^1.2.3",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jest": "^21.15.1",
+    "http-server": "^0.11.1",
+    "jest": "^22.4.3",
+    "parcel-bundler": "^1.8.1",
+    "puppeteer": "^1.4.0"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "4"
+          }
+        }
+      ],
+      "stage-2"
+    ]
+  },
+  "eslintIgnore": [
+    "lib",
+    "docs",
+    ".cache",
+    "/tests/public/script.*.*"
+  ],
+  "jest": {
+    "testMatch": [
+      "**/tests/*.js"
+    ],
+    "verbose": true
+  }
+}
