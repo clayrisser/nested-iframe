@@ -44,22 +44,26 @@ describe('nestedIframe(query)', async () => {
       return console.log(message);
     });
     await page.goto(`http://localhost:${config.port}`);
-    const iframe = await page.evaluate(() => {
+    const { nestedIframe, nestedIframeSync } = await page.evaluate(() => {
       // eslint-disable-next-line no-undef
       const browserWindow = window;
       return new Promise(resolve => {
         browserWindow.setTimeout(
           () =>
-            resolve(
-              browserWindow.nestedIframe.contentDocument.getElementsByTagName(
-                'h1'
-              )[0].innerText
-            ),
-          2000
+            resolve({
+              // nestedIframeSync: browserWindow.nestedIframeSync.contentDocument.getElementsByTagName(
+              //   'h1'
+              // )[0].innerText,
+              // nestedIframe: browserWindow.nestedIframe.contentDocument.getElementsByTagName(
+              //   'h1'
+              // )[0].innerText
+            }),
+          0
         );
       });
     });
-    expect(iframe).toBe('Iframe 2');
+    expect(nestedIframeSync).toBe(undefined);
+    expect(nestedIframe).toBe(undefined);
   });
 });
 
