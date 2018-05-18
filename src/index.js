@@ -1,4 +1,5 @@
 export default function nestedIframe(query, iframe = null) {
+  if (!iframe) query = [...query];
   if (!query) throw new Error("missing parameter 'query'");
   if (!query.length) return iframe;
   // eslint-disable-next-line no-undef
