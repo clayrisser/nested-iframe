@@ -28,8 +28,12 @@ npm install --save nested-iframe
 
 ## Usage
 
+### Example 1
+
 Waits for all iframes to load
+
 The deepest iframe is returned
+
 ```js
 import nestedIframe from 'nested-iframe';
 
@@ -42,8 +46,12 @@ nestedIframe([
 });
 ```
 
+### Example 2
+
 Optional timeout at 5 seconds
+
 The deepest iframe that is loaded is returned
+
 ```js
 import nestedIframe from 'nested-iframe';
 
@@ -56,8 +64,12 @@ nestedIframe([
 });
 ```
 
+### Example 3
+
 Optional timeout at 5 seconds
+
 Throws an error if timeout
+
 ```js
 import nestedIframe from 'nested-iframe';
 
@@ -75,8 +87,12 @@ nestedIframe([
 });
 ```
 
+### Example 4
+
 Does not wait for iframes to load
+
 The deepest iframe that is loaded is returned (probably the parentIframe)
+
 ```js
 import { nestedIframeSync } from 'nested-iframe';
 
@@ -88,8 +104,12 @@ const grandchildIframe = nestedIframe([
 grandchildIframe.contentDocument.body.innerHTML = 'Hello, world!';
 ```
 
+### Example 5
+
 Does not wait for iframes to load
+
 Throws an error if deepest iframe not loaded
+
 ```js
 import { nestedIframeSync } from 'nested-iframe';
 
