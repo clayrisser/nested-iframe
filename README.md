@@ -7,6 +7,13 @@
 Please ★ this repo if you found it useful ★ ★ ★
 
 
+## Features
+
+* Asynchronously waits for iframe to load
+* Optional timeout
+* Optionally find nested iframe synchronously
+
+
 ## Installation
 
 ```sh
@@ -21,14 +28,81 @@ npm install --save nested-iframe
 
 ## Usage
 
+Waits for all iframes to load
+The deepest iframe is returned
 ```js
 import nestedIframe from 'nested-iframe';
+
+nestedIframe([
+  '#parentIframe',
+  '#childIframe',
+  '#grandchildIframe'
+]).then((grandchildIframe) => {
+  grandchildIframe.contentDocument.body.innerHTML = 'Hello, world!';
+});
+```
+
+Optional timeout at 5 seconds
+The deepest iframe that is loaded is returned
+```js
+import nestedIframe from 'nested-iframe';
+
+nestedIframe([
+  '#parentIframe',
+  '#childIframe',
+  '#grandchildIframe'
+], { timeout: 5000 }).then((grandchildIframe) => {
+  grandchildIframe.contentDocument.body.innerHTML = 'Hello, world!';
+});
+```
+
+Optional timeout at 5 seconds
+Throws an error if timeout
+```js
+import nestedIframe from 'nested-iframe';
+
+nestedIframe([
+  '#parentIframe',
+  '#childIframe',
+  '#grandchildIframe'
+], {
+  timeout: 5000,
+  error: true
+}).then((grandchildIframe) => {
+  grandchildIframe.contentDocument.body.innerHTML = 'Hello, world!';
+}).catch((err) => {
+  console.error(err);
+});
+```
+
+Does not wait for iframes to load
+The deepest iframe that is loaded is returned (probably the parentIframe)
+```js
+import { nestedIframeSync } from 'nested-iframe';
 
 const grandchildIframe = nestedIframe([
   '#parentIframe',
   '#childIframe',
   '#grandchildIframe'
 ]);
+grandchildIframe.contentDocument.body.innerHTML = 'Hello, world!';
+```
+
+Does not wait for iframes to load
+Throws an error if deepest iframe not loaded
+```js
+import { nestedIframeSync } from 'nested-iframe';
+
+try {
+  const grandchildIframe = nestedIframe([
+    '#parentIframe',
+    '#childIframe',
+    '#grandchildIframe'
+  ], { error: true });
+  grandchildIframe.contentDocument.body.innerHTML = 'Hello, world!';
+} catch(err) {
+  console.error(err);
+}
 ```
 
 

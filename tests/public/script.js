@@ -9,6 +9,9 @@ iframe.setAttribute('src', '/iframe1.html');
 document.body.appendChild(iframe);
 
 browserWindow.nestedIframeSync = nestedIframeSync(['iframe', 'iframe']);
+browserWindow.setTimeout(() => {
+  browserWindow.nestedIframeSyncDelay = nestedIframeSync(['iframe', 'iframe']);
+}, 1000);
 nestedIframe(['iframe', 'iframe']).then(result => {
   browserWindow.nestedIframe = result;
 });
