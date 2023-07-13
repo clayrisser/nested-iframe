@@ -4,6 +4,8 @@
 
 > Recursively find a nested iframe
 
+![](assets/nested-iframe.png)
+
 Please ★ this repo if you found it useful ★ ★ ★
 
 
